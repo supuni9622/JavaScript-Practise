@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+            var story = {
+                storyName: 'Story 1',
+                steps : [
+                    {
+                        sortId : 1,
+                        channels : [{
+                        channelId : 1,
+                        content: 'Request 1'
+                    },
+                    {
+                        channelId : 2,
+                        content: 'Request 1'
+                    }]
+                },
+                {
+                        sortId : 2,
+                        channels : [{
+                        channelId : 1,
+                        content: 'Request 2'
+                    },
+                    {
+                        channelId : 2,
+                        content: 'Request 2'
+                    }]
+                },
+                {
+                        sortId : 3,
+                        channels : [{
+                        channelId : 1,
+                        content: 'Request 3'
+                    },
+                    {
+                        channelId : 2,
+                        content: 'Request 3'
+                    }]
+                }
+            ] 
+            }
+
+            let steps = story.steps;
+            var txt = "";
+           
+            async function test() {
+            for await (const step of steps) {
+            txt = step.channels[0].content + "</br>";
+            
+            }
+            return txt;
+            document.write(txt);
+            }
+            test();
+            
+            </script>
+    </body>
+</html>
