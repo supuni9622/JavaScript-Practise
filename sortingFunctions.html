@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sorting Functions</title>
+    </head>
+    <body>
+        <div style="margin: 50px;">
+        <div> <h1> JS SORTING FUNCTIONS </h1></div>
+        <div>
+            <h2>Bubble Sort</h2>
+            <p>The space complexity for the algorithm is O(1) and the average time complexity is O(n<sup>2</sup>).</p>
+            <img src="./assets/bubble.png" alt="Bubble Sort">
+            <p>Array : [12, 1, 78, 13, 128, 55, 4]</p>
+            <p>Sorted Array : <span id="bubble1"></span></p>
+            <p>Array :[200, 30, 1, 0, 122, 45, 5, 199]</p>
+            <p>Sorted Array : <span id="bubble2"></span></p>
+        </div>
+
+        <div>
+            <h2>Insertion Sort</h2>
+            <p>The space complexity for the algorithm is O(1) and the average time complexity is O(n<sup>2</sup>).</p>
+            <img src="./assets/insertion.png" alt="Insertion Sort">
+            
+            <p>Array :[200, 30, 1, 0, 122, 45, 5, 199]</p>
+            <p>Sorted Array : <span id="insertion"></span></p>
+        </div>
+
+        <div>
+            <h2>Selection Sort</h2>
+            <p>The space complexity for the algorithm is O(1) and the average time complexity is O(n<sup>2</sup>).</p>
+            <img src="./assets/selection.png" alt="Selection Sort">
+            
+            <p>Array :[200, 30, 1, 0, 122, 45, 5, 199]</p>
+            <p>Sorted Array : <span id="selection"></span></p>
+        </div>
+
+        <script>
+
+            const array1 = [12, 1, 78, 13, 128, 55, 4]
+            function bubbleSort1(arr) {
+                for (let i = 0; i < arr.length; i++) {
+                    for (let j = 0; j < arr.length - i - 1; j++) {
+                        if (arr[j + 1] < arr[j]) {
+                            // ES6 way of swapping array elements
+                            [arr[j + 1], arr[j]] = [arr[j], arr[j + 1]];
+                        }
+                    }
+                }
+                return arr;
+            }
+
+            const bubbleSortArray = bubbleSort1(array1);
+            document.getElementById("bubble1").innerHTML = bubbleSortArray;
+
+            const array2 = [200, 30, 1, 0, 122, 45, 5, 199]
+
+            // Slightly optimised solution for a nearly sorted array, by reducing the number of passes needed
+            function bubbleSort2(arr) {
+                let noSwaps;
+                for (let i = arr.length; i > 0; i--) {
+                    noSwaps = true;
+                    for (let j = 0; j < i - 1; j++) {
+                        if (arr[j + 1] < arr[j]) {
+                            // Swap
+                            [arr[j + 1], arr[j]] = [arr[j], arr[j + 1]];
+                            // Make 'noSwaps' false
+                            noSwaps = false;
+                        }
+                    }
+                    // End the iterations if there were no swaps made in one full pass
+                    if (noSwaps) {
+                    break;
+                }
+            }
+            return arr;
+        }
+        const bubbleSortArray2 = bubbleSort2(array2);
+        document.getElementById("bubble2").innerHTML = bubbleSortArray2;
+
+        function insertionSort(arr) {
+            for (let i = 1; i < arr.length; i++) {
+      
+                // Start comparing current element with every element before it
+                for (let j = i - 1; j > -1; j--) {
+          
+                    // Swap elements as required
+                    if (arr[j + 1] < arr[j]) {
+                        [arr[j + 1], arr[j]] = [arr[j], arr[j + 1]];
+                    }
+                }
+            }
+            return arr;
+        }
+
+        const insertionSortArray = insertionSort(array2);
+        document.getElementById("insertion").innerHTML = insertionSortArray;
+
+        function selectionSort(arr) {
+            let min;
+            for (let i = 0; i < arr.length; i++) {
+                // Assume a minimum value        
+                min = i;
+                for (let j = i + 1; j < arr.length; j++) {
+                    if (arr[j] < arr[min]) {
+                        min = j;
+                }
+            }
+      
+            // Swap if new minimun value found
+            if (min !== i) {
+                [arr[i], arr[min]] = [arr[min], arr[i]];
+            }
+            }
+            return arr;
+        }
+
+        const selectionSortArray = selectionSort(array2);
+        document.getElementById("selection").innerHTML = selectionSortArray;
+        </script>
+    </div>
+    </body>
+
+</html>
