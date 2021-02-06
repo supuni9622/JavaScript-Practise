@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Seats</title>
+    </head>
+    <body>
+
+        <label for="rows">Rows:</label><br>
+            <input type="text" id="rows" name="rows" value="10"><br>
+        <label for="right">Right seats:</label><br>
+            <input type="text" id="right" name="right" value="2"><br><br>
+        <label for="left">Left seats:</label><br>
+            <input type="text" id="left" name="left" value="3"><br><br>
+        <label for="back">Back seats:</label><br>
+            <input type="text" id="back" name="back" value="6"><br><br>
+
+        <button onclick="showIllustration()">Show illustration</button>
+        
+        <script>
+
+            const showIllustration = () => {
+
+                let count_left = 0;
+                let count_right = 1;
+
+                let c = 0;
+                let d = 1;
+                // let numberOfRows = 10;
+                // let numberOfBackSeats = 6;
+                // let numberOfLeftSeats = 3;
+                // let numberOfRightSeats = 2;
+
+                let numberOfRows = document.getElementById('rows').value;
+                let numberOfBackSeats = document.getElementById('back').value;
+                let numberOfLeftSeats = document.getElementById('left').value;
+                let numberOfRightSeats = document.getElementById('right').value;
+
+                for(let i= 1;  i <= numberOfRows; i++ ){
+                    
+                    // used if-else to balance the space problem 
+                    if(i<10){
+                        // Shows row number
+                        document.write(i + '&nbsp; &nbsp; &nbsp;');
+                    }else{
+                        document.write(i + '&nbsp; &nbsp;');
+                    }
+            
+                    // When looping through the main for loop, when i equals to rows number; it means it is the last row
+                    if(i == numberOfRows){
+                        for(let p = 0; p < numberOfBackSeats; p++ ){
+
+                            // If you want to show the seat number uncomment bellow 2 lines
+                            //  let backRow = count_right + p;
+                            //  document.write(backRow +' ');
+
+                            document.write('<input type="checkbox" id="myCheck">' +' ');
+   
+                        }
+                        // When i comes to last row; we want to break the loop
+                        break;
+                    }
+
+                    for(let j = 1; j <= numberOfLeftSeats; j++){
+
+                        // If you want to show the seat number uncomment bellow 2 lines
+                        // let leftSeats = count_left + j;
+                        // document.write(leftSeats +' ');
+
+                        document.write('<input type="checkbox" id="myCheck">' +' ');
+                   
+                        c++;
+                        count_right++;
+                        d++;
+
+                    }
+
+                    // If you want to keep spaces for doors you can use this and uncomment bellow condition
+                    //let doorSpacesRaw = Math.round(rows/2);
+                    document.write('&nbsp; &nbsp; &nbsp;');
+
+                    // if(i !== doorSpacesRaw){
+
+                        for(let k=0; k< numberOfRightSeats; k++){
+
+                            // If you want to show the seat number uncomment bellow 2 lines
+                            //let rightSeats = count_right + k;
+                            // document.write(rightSeats + ' ');
+                       
+                            document.write('<input type="checkbox" id="myCheck">' +' ');
+                            c++;
+                            d++;
+                        }
+                    
+                    // }
+
+                    count_right = d;
+                    count_left = c;
+                    document.write('</br>');
+                }
+            }
+            
+        </script>
+    </body>
+</html>
