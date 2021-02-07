@@ -14,18 +14,17 @@ mongoClient.connect(url, (err, db)=> {
     }else{
         console.log("Connected to ", url);
 
-        // Insert documents
+        // Find documents
 
         var collections = db.db('fruits').collection('Apples');
 
-        var doc1 = {"name" : "red apples", "color" : "red"};
-        var doc2 = {"name" : "green apples", "color" : "green"};
-
-        collections.insert([doc1,doc2], (err, res) => {
+        collections.find().toArray((err, res) => {
             if(err){
                 console.log(err);
+            }else if(res.length){
+                console.log(res);
             }else{
-                console.log("Inserted document", res.insertedCount);
+                console.log('No maches found');
             }
             db.close();
         });
